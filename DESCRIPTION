@@ -1,0 +1,22 @@
+Package: roxylint
+Title: Lint 'roxygen2'-generated documentation
+Version: 0.0.0.9000
+Authors@R:
+    c(
+      person(
+        "Doug", "Kelkhoff",
+        email = "doug.kelkhoff@gmail.com",
+        role = c("aut", "cre")
+      )
+    )
+Description: Provides formatting linting to roxygen2 tags
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    utils,
+    cli,
+    roxygen2
+Config/Needs/documentation: roxylint
+Config/roxylint: # list(linters = roxylint::tidy)
+Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "roxylint::roxylint"))
+RoxygenNote: 7.2.3
