@@ -20,6 +20,13 @@ tidy_param(x, name, description, ...)
 
 tidy
 }
+\arguments{
+\item{x}{The \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}} that prompted the lint.}
+
+\item{...}{Additional arguments unused.}
+
+\item{name, description}{Used for \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}-specific linters.}
+}
 \description{
 Preconfigured linters, either as a collective list of linters or
 individually. "tidy" linters implement guidelines from the tidyverse style
@@ -35,7 +42,7 @@ argument details.
 
 \item \code{tidy_title()}: Tidy 'Sentence case' titles
 
-\item \code{tidy_param()}: Tidy 'Sentence case' parameter definitions
+\item \code{tidy_param()}: Tidy 'Sentence case' \verb{@param} definitions
 
 \item \code{tidy}: A list of all tidyverse style guide inspired linters
 

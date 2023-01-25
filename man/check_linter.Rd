@@ -2,9 +2,21 @@
 % Please edit documentation in R/check_linter.R
 \name{check_linter}
 \alias{check_linter}
+\alias{check_linter.default}
+\alias{check_linter.list}
+\alias{check_linter.function}
+\alias{check_linter.character}
 \title{Apply 'roxygen2' linters}
 \usage{
 check_linter(linters, tag, ...)
+
+\method{check_linter}{default}(linters, tag, ...)
+
+\method{check_linter}{list}(linters, tag, ...)
+
+\method{check_linter}{`function`}(linters, tag, ...)
+
+\method{check_linter}{character}(linters, tag, message = NULL, ...)
 }
 \arguments{
 \item{linters}{A linters specification, either a \code{function} or
@@ -12,6 +24,10 @@ check_linter(linters, tag, ...)
 of either. See details for more information.}
 
 \item{tag}{A \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}.}
+
+\item{...}{Additional arguments unused.}
+
+\item{message}{An optional message to use for an alert.}
 }
 \value{
 \code{TRUE}, invisibly. However, this function is primarily used for its
@@ -21,3 +37,34 @@ side-effect of raising alerts during documentation.
 Provided a list of linters for a given tag, iterate over linters to raise
 alerts during the documentation process.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{check_linter(default)}: By default, no linting is performed
+
+\item \code{check_linter(list)}: A \code{list} of \code{function}s or \code{character} regular expressions.
+
+If a \code{character} value is named, the name is used as the message for a alert
+that is raised when the expression does not match.
+
+\item \code{check_linter(`function`)}: A \code{function} to evaluate for the given tag
+
+\code{function}'s are evaluated with the following arguments:
+\enumerate{
+\item The \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}
+\item The contents of the tag's \verb{$val}, as named arguments
+}
+
+Because the number of arguments might not be readily apparent, any function
+should accept a trailing \code{...} argument.
+
+Provided \code{function}s may print lint output, or signal lint output with
+messages or warnings. A \code{\link[cli:cli_alert]{cli::cli_alert()}} will reflect the severity of the
+function used to emit the output.
+
+\item \code{check_linter(character)}: A \code{character} regular expressions.
+
+If a \code{character} value is found, its value is assumed to be a regular
+expression which must match a given tag's \code{raw} content (the text as it
+appears in the \code{roxygen2} header).
+
+}}

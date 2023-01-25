@@ -7,6 +7,8 @@
 #'   `character` regular expression that should be matched, or a `list`
 #'   of either. See details for more information.
 #' @param tag A [roxygen2::roxy_tag()].
+#' @param message An optional message to use for an alert.
+#' @param ... Additional arguments unused.
 #'
 #' @return `TRUE`, invisibly. However, this function is primarily used for its
 #'   side-effect of raising alerts during documentation.
@@ -16,7 +18,8 @@ check_linter <- function(linters, tag, ...) {
   UseMethod("check_linter")
 }
 
-#' @describeIn roxylint
+
+#' @describeIn check_linter
 #' By default, no linting is performed
 #'
 #' @export
@@ -25,8 +28,7 @@ check_linter.default <- function(linters, tag, ...) {
 }
 
 
-
-#' @describeIn roxylint
+#' @describeIn check_linter
 #' A `list` of `function`s or `character` regular expressions.
 #'
 #' If a `character` value is named, the name is used as the message for a alert
@@ -44,7 +46,7 @@ check_linter.list <- function(linters, tag, ...) {
 }
 
 
-#' @describeIn roxylint
+#' @describeIn check_linter
 #' A `function` to evaluate for the given tag
 #'
 #' `function`'s are evaluated with the following arguments:
@@ -66,7 +68,7 @@ check_linter.function <- function(linters, tag, ...) {
 }
 
 
-#' @describeIn roxylint
+#' @describeIn check_linter
 #' A `character` regular expressions.
 #'
 #' If a `character` value is found, its value is assumed to be a regular
@@ -74,7 +76,7 @@ check_linter.function <- function(linters, tag, ...) {
 #' appears in the `roxygen2` header).
 #'
 #' @export
-check_linter.character <- function(linters, tag, message = NULL) {
+check_linter.character <- function(linters, tag, message = NULL, ...) {
   into_roxy_alert(tag, {
     if (!grepl(linters, tag$raw, perl = TRUE)) {
       message <- message %||% paste0("raw value does not match '", linters, "'")

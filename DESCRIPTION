@@ -9,7 +9,7 @@ Authors@R:
         role = c("aut", "cre")
       )
     )
-Description: Provides formatting linting to roxygen2 tags
+Description: Provides formatting linting to roxygen2 tags.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:

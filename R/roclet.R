@@ -11,6 +11,10 @@ roxylint <- function() {
 #' @describeIn roxylint
 #' For each tag scanned by 'roxygen2', apply any linters
 #'
+#' @inheritParams roxygen2::roclet_process
+#'
+#' @return `NULL`
+#'
 #' @exportS3Method roxygen2::roclet_process roclet_roxylint
 roclet_process.roclet_roxylint <- function(x, blocks, env, base_path) {  # nolint
   config <- config_load()
@@ -25,6 +29,11 @@ roclet_process.roclet_roxylint <- function(x, blocks, env, base_path) {  # nolin
 
 #' @describeIn roxylint
 #' Unused
+#'
+#' @param ... Additional arguments unused.
+#' @inheritParams roxygen2::roclet_output
+#'
+#' @return `NULL`
 #'
 #' @exportS3Method roxygen2::roclet_output roclet_roxylint
 roclet_output.roclet_roxylint <- function(...) {  # nolint

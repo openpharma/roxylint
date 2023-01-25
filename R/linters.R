@@ -7,6 +7,10 @@
 #' Refer to the individual [roxygen2::roxy_tag()] for the respective tag for
 #' argument details.
 #'
+#' @param x The [roxygen2::roxy_tag()] that prompted the lint.
+#' @param name,description Used for [roxygen2::roxy_tag()]-specific linters.
+#' @param ... Additional arguments unused.
+#'
 #' @name linters
 NULL
 
@@ -53,7 +57,7 @@ tidy_title <- function(x, ...) {
 
 
 #' @describeIn linters
-#' Tidy 'Sentence case' parameter definitions
+#' Tidy 'Sentence case' `@param` definitions
 #'
 #' @export
 tidy_param <- function(x, name, description, ...) {
