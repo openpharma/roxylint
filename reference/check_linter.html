@@ -45,7 +45,19 @@ alerts during the documentation process.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_linter</span><span class="op">(</span><span class="va">linters</span>, <span class="va">tag</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_linter</span><span class="op">(</span><span class="va">linters</span>, <span class="va">tag</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">check_linter</span><span class="op">(</span><span class="va">linters</span>, <span class="va">tag</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for list</span></span>
+<span><span class="fu">check_linter</span><span class="op">(</span><span class="va">linters</span>, <span class="va">tag</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for `function`</span></span>
+<span><span class="fu">check_linter</span><span class="op">(</span><span class="va">linters</span>, <span class="va">tag</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for character</span></span>
+<span><span class="fu">check_linter</span><span class="op">(</span><span class="va">linters</span>, <span class="va">tag</span>, message <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -59,6 +71,14 @@ of either. See details for more information.</p></dd>
 <dt>tag</dt>
 <dd><p>A <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code>.</p></dd>
 
+
+<dt>...</dt>
+<dd><p>Additional arguments unused.</p></dd>
+
+
+<dt>message</dt>
+<dd><p>An optional message to use for an alert.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -67,6 +87,26 @@ of either. See details for more information.</p></dd>
 <p><code>TRUE</code>, invisibly. However, this function is primarily used for its
 side-effect of raising alerts during documentation.</p>
     </div>
+    <div class="section level2">
+    <h2 id="methods-by-class-">Methods (by class)<a class="anchor" aria-label="anchor" href="#methods-by-class-"></a></h2>
+    
+<ul><li><p><code>check_linter(default)</code>: By default, no linting is performed</p></li>
+<li><p><code>check_linter(list)</code>: A <code>list</code> of <code>function</code>s or <code>character</code> regular expressions.</p>
+<p>If a <code>character</code> value is named, the name is used as the message for a alert
+that is raised when the expression does not match.</p></li>
+<li><p><code>check_linter(`function`)</code>: A <code>function</code> to evaluate for the given tag</p>
+<p><code>function</code>'s are evaluated with the following arguments:</p><ol><li><p>The <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code></p></li>
+<li><p>The contents of the tag's <code>$val</code>, as named arguments</p></li>
+</ol><p>Because the number of arguments might not be readily apparent, any function
+should accept a trailing <code>...</code> argument.</p>
+<p>Provided <code>function</code>s may print lint output, or signal lint output with
+messages or warnings. A <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert()</a></code> will reflect the severity of the
+function used to emit the output.</p></li>
+<li><p><code>check_linter(character)</code>: A <code>character</code> regular expressions.</p>
+<p>If a <code>character</code> value is found, its value is assumed to be a regular
+expression which must match a given tag's <code>raw</code> content (the text as it
+appears in the <code>roxygen2</code> header).</p></li>
+</ul></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
