@@ -103,7 +103,7 @@ Enhances:
 .onLoad <- function(libname, pkgname) {
   if (requireNamespace("roxylint", quietly = TRUE)) {
     roxylint::register_linters(
-      yell = "^[[:upper:] ]$"
+      yell = "^[[:upper:] ]*$"
     )
   }
 }
