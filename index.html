@@ -129,7 +129,7 @@
 <code class="sourceCode R"><span><span class="va">.onLoad</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">libname</span>, <span class="va">pkgname</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"roxylint"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu">roxylint</span><span class="fu">::</span><span class="fu"><a href="reference/register_linters.html">register_linters</a></span><span class="op">(</span></span>
-<span>      yell <span class="op">=</span> <span class="st">"^[[:upper:] ]$"</span></span>
+<span>      yell <span class="op">=</span> <span class="st">"^[[:upper:] ]*$"</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
