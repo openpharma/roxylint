@@ -16,10 +16,16 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/add_linters.html</loc>
+  </url>
+  <url>
     <loc>/reference/check_linter.html</loc>
   </url>
   <url>
     <loc>/reference/config.html</loc>
+  </url>
+  <url>
+    <loc>/reference/config_tag_accepts_linters.html</loc>
   </url>
   <url>
     <loc>/reference/demo_tag.html</loc>
@@ -38,6 +44,9 @@
   </url>
   <url>
     <loc>/reference/linters.html</loc>
+  </url>
+  <url>
+    <loc>/reference/register_linters.html</loc>
   </url>
   <url>
     <loc>/reference/roxylint.html</loc>
