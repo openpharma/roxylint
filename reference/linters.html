@@ -48,18 +48,30 @@ guide.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lint_sentence_case</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lint_starts_lowercase</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">lint_full_stop</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">lint_no_full_stop</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">lint_sentence_case</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">lint_title_case</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tidy_title</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tidy_param</span><span class="op">(</span><span class="va">x</span>, <span class="va">name</span>, <span class="va">description</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">tidy_return</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">tidy_seealso</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tidy</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>An object of class <code>list</code> of length 2.</p>
+    <p>An object of class <code>list</code> of length 4.</p>
     </div>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
@@ -83,9 +95,15 @@ argument details.</p>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
-<ul><li><p><code>lint_sentence_case()</code>: Lint sentence case (uses <code>$raw</code> for <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code>s)</p></li>
+<ul><li><p><code>lint_starts_lowercase()</code>: Lowercase start linting. (uses <code>$raw</code> for <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code>s)</p></li>
+<li><p><code>lint_full_stop()</code>: Ends in a full stop. (uses <code>$raw</code> for <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code>s)</p></li>
+<li><p><code>lint_no_full_stop()</code>: Does not end in a full stop. (uses <code>$raw</code> for <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code>s)</p></li>
+<li><p><code>lint_sentence_case()</code>: Sentence case linting (uses <code>$raw</code> for <code><a href="https://roxygen2.r-lib.org/reference/roxy_tag.html" class="external-link">roxygen2::roxy_tag()</a></code>s)</p></li>
+<li><p><code>lint_title_case()</code>: Title case linting</p></li>
 <li><p><code>tidy_title()</code>: Tidy 'Sentence case' titles</p></li>
 <li><p><code>tidy_param()</code>: Tidy 'Sentence case' <code>@param</code> definitions</p></li>
+<li><p><code>tidy_return()</code>: Tidy 'Sentence case' <code>@return</code> definitions</p></li>
+<li><p><code>tidy_seealso()</code>: Tidy 'Sentence case' <code>@seealso</code> definitions</p></li>
 <li><p><code>tidy</code>: A list of all tidyverse style guide inspired linters</p></li>
 </ul></div>
 
