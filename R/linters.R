@@ -16,7 +16,64 @@ NULL
 
 
 #' @describeIn linters
-#' Lint sentence case (uses `$raw` for [roxygen2::roxy_tag()]s)
+#' Lowercase start linting. (uses `$raw` for [roxygen2::roxy_tag()]s)
+#'
+#' @export
+lint_starts_lowercase <- function(x, ...) {
+  UseMethod("lint_sentence_case")
+}
+
+lint_starts_lowercase.roxy_tag <- function(x, ...) {
+  lint_starts_lowercase(x$raw, ...)
+}
+
+lint_starts_lowercase.character <- function(x, ...) {
+  re <- "^[^[:upper:]]"
+  if (!grepl(re, trimws(x)))
+    message("should not start with an uppercase letter")
+}
+
+
+#' @describeIn linters
+#' Ends in a full stop. (uses `$raw` for [roxygen2::roxy_tag()]s)
+#'
+#' @export
+lint_full_stop <- function(x, ...) {
+  UseMethod("lint_sentence_case")
+}
+
+lint_full_stop.roxy_tag <- function(x, ...) {
+  lint_full_stop(x$raw, ...)
+}
+
+lint_full_stop.character <- function(x, ...) {
+  re <- "\\.$"
+  if (!grepl(re, trimws(x)))
+    message("should terminate with a full stop, `.`")
+}
+
+
+#' @describeIn linters
+#' Does not end in a full stop. (uses `$raw` for [roxygen2::roxy_tag()]s)
+#'
+#' @export
+lint_no_full_stop <- function(x, ...) {
+  UseMethod("lint_no_full_stop")
+}
+
+lint_no_full_stop.roxy_tag <- function(x, ...) {
+  lint_no_full_stop(x$raw, ...)
+}
+
+lint_no_full_stop.character <- function(x, ...) {
+  re <- "[^.]$"
+  if (!grepl(re, trimws(x)))
+    message("should not terminate with a full stop, `.`")
+}
+
+
+#' @describeIn linters
+#' Sentence case linting (uses `$raw` for [roxygen2::roxy_tag()]s)
 #'
 #' @export
 lint_sentence_case <- function(x, ...) {
@@ -28,9 +85,49 @@ lint_sentence_case.roxy_tag <- function(x, ...) {
 }
 
 lint_sentence_case.character <- function(x, ...) {
-  re <- "^[[:upper:]](.|\\n)*\\.$"
-  if (!grepl(re, trimws(x)))
-    message("descriptions should be 'Sentence case' and end in a period")
+  words <- strsplit(trimws(x), " ")[[1L]]
+
+  # find any first words in sentences (at start, or after full stop)
+  has_stop <- grepl("\\.$", words)
+  is_start <- rep_len(FALSE, length.out = length(words))
+  is_start[[1]] <- TRUE
+  is_start[-1] <- has_stop[-length(words)]
+
+  first_cap <- all(grepl("^[^[:lower:]]", words[is_start]))
+  rest_lower <- all(grepl("^[^[:upper:]]", words[!is_start]))
+
+  if (!(first_cap && rest_lower))
+    message("should be 'Sentence case'")
+}
+
+
+#' @describeIn linters
+#' Title case linting
+#'
+#' @export
+lint_title_case <- function(x, ...) {
+  UseMethod("lint_title_case")
+}
+
+lint_title_case.roxy_tag <- function(x, ...) {
+  lint_title_case(x$raw, ...)
+}
+
+lint_title_case.character <- function(x, ...) {
+  # AP style title case rules
+  words <- strsplit(x, " ")[[1L]]
+  exceptions <- c(
+    "a", "an", "the",  # articles
+    "and", "but", "for",  # coordinating conjunctions
+    "at", "by", "to", "of", "on", "off", "out"  # prepositions
+  )
+
+  is_exception <- tolower(words) %in% exceptions
+  is_exception[[1]] <- FALSE
+  is_exception[[length(words)]] <- FALSE
+
+  if (any(grepl("^[[:lower:]]", words) & !is_exception))
+    message("should be 'Title Case'")
 }
 
 
@@ -39,20 +136,8 @@ lint_sentence_case.character <- function(x, ...) {
 #'
 #' @export
 tidy_title <- function(x, ...) {
-  rd <- tools::parse_Rd(textConnection(x$val), fragment = TRUE)
-  n <- length(rd)
-
-  re <- "^[[:upper:]]"
-  if ((attr(rd[[1]], "Rd_tag") == "TEXT") && !grepl(re, rd[[1]])) {
-    message("should start capitalized and be in 'Sentence case'")
-    return()
-  }
-
-  re <- "\\.\\s*$"
-  if ((attr(rd[[n]], "Rd_tag") == "TEXT") && grepl(re, rd[[n]])) {
-    message("should not be punctuated")
-    return()
-  }
+  lint_sentence_case(x$raw)
+  lint_no_full_stop(x$raw)
 }
 
 
@@ -62,6 +147,27 @@ tidy_title <- function(x, ...) {
 #' @export
 tidy_param <- function(x, name, description, ...) {
   lint_sentence_case(description)
+  lint_full_stop(description)
+}
+
+
+#' @describeIn linters
+#' Tidy 'Sentence case' `@return` definitions
+#'
+#' @export
+tidy_return <- function(x, ...) {
+  lint_sentence_case(x$val)
+  lint_full_stop(x$val)
+}
+
+
+#' @describeIn linters
+#' Tidy 'Sentence case' `@seealso` definitions
+#'
+#' @export
+tidy_seealso <- function(x, ...) {
+  lint_sentence_case(x$val)
+  lint_full_stop(x$val)
 }
 
 
@@ -71,5 +177,7 @@ tidy_param <- function(x, name, description, ...) {
 #' @export
 tidy <- list(
   title = tidy_title,
-  param = tidy_param
+  param = tidy_param,
+  return = tidy_return,
+  seealso = tidy_seealso
 )

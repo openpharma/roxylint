@@ -16,7 +16,7 @@
 #'
 #' @param str A 'roxygen2' tag string.
 #'
-#' @return A [roxygen2::roxy_tag()]
+#' @return A [roxygen2::roxy_tag()].
 #'
 #' @examples
 #' demo_tag("@param var abc")

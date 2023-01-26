@@ -10,7 +10,7 @@ demo_tag(str)
 \item{str}{A 'roxygen2' tag string.}
 }
 \value{
-A \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}
+A \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}.
 }
 \description{
 Tools for inspecting \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s. This can be helpful for

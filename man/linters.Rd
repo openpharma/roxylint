@@ -3,20 +3,38 @@
 \docType{data}
 \name{linters}
 \alias{linters}
+\alias{lint_starts_lowercase}
+\alias{lint_full_stop}
+\alias{lint_no_full_stop}
 \alias{lint_sentence_case}
+\alias{lint_title_case}
 \alias{tidy_title}
 \alias{tidy_param}
+\alias{tidy_return}
+\alias{tidy_seealso}
 \alias{tidy}
 \title{Linters}
 \format{
-An object of class \code{list} of length 2.
+An object of class \code{list} of length 4.
 }
 \usage{
+lint_starts_lowercase(x, ...)
+
+lint_full_stop(x, ...)
+
+lint_no_full_stop(x, ...)
+
 lint_sentence_case(x, ...)
+
+lint_title_case(x, ...)
 
 tidy_title(x, ...)
 
 tidy_param(x, name, description, ...)
+
+tidy_return(x, ...)
+
+tidy_seealso(x, ...)
 
 tidy
 }
@@ -38,11 +56,23 @@ argument details.
 }
 \section{Functions}{
 \itemize{
-\item \code{lint_sentence_case()}: Lint sentence case (uses \verb{$raw} for \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s)
+\item \code{lint_starts_lowercase()}: Lowercase start linting. (uses \verb{$raw} for \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s)
+
+\item \code{lint_full_stop()}: Ends in a full stop. (uses \verb{$raw} for \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s)
+
+\item \code{lint_no_full_stop()}: Does not end in a full stop. (uses \verb{$raw} for \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s)
+
+\item \code{lint_sentence_case()}: Sentence case linting (uses \verb{$raw} for \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s)
+
+\item \code{lint_title_case()}: Title case linting
 
 \item \code{tidy_title()}: Tidy 'Sentence case' titles
 
 \item \code{tidy_param()}: Tidy 'Sentence case' \verb{@param} definitions
+
+\item \code{tidy_return()}: Tidy 'Sentence case' \verb{@return} definitions
+
+\item \code{tidy_seealso()}: Tidy 'Sentence case' \verb{@seealso} definitions
 
 \item \code{tidy}: A list of all tidyverse style guide inspired linters
 

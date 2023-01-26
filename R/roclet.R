@@ -13,17 +13,20 @@ roxylint <- function() {
 #'
 #' @inheritParams roxygen2::roclet_process
 #'
-#' @return `NULL`
+#' @return `NULL`, invisibly.
 #'
 #' @exportS3Method roxygen2::roclet_process roclet_roxylint
 roclet_process.roclet_roxylint <- function(x, blocks, env, base_path) {  # nolint
   config <- config_load()
+
   for (block in blocks) {
     for (x in block$tags) {
       linters <- config$linters[[x$tag]]
       check_linter(linters, x)
     }
   }
+
+  invisible(NULL)
 }
 
 
@@ -33,7 +36,7 @@ roclet_process.roclet_roxylint <- function(x, blocks, env, base_path) {  # nolin
 #' @param ... Additional arguments unused.
 #' @inheritParams roxygen2::roclet_output
 #'
-#' @return `NULL`
+#' @return `NULL`, invisibly.
 #'
 #' @exportS3Method roxygen2::roclet_output roclet_roxylint
 roclet_output.roclet_roxylint <- function(...) {  # nolint

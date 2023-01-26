@@ -10,7 +10,7 @@ format_tag_prefix(x)
 \item{x}{A \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}.}
 }
 \value{
-A formatted string
+A formatted string.
 }
 \description{
 Format a tag for alert context

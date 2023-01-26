@@ -26,9 +26,9 @@ roclet_output.roclet_roxylint(...)
 \value{
 A \code{roxylint} \code{\link[roxygen2:roclet]{roxygen2::roclet()}}.
 
-\code{NULL}
+\code{NULL}, invisibly.
 
-\code{NULL}
+\code{NULL}, invisibly.
 }
 \description{
 Roclet for 'roxygen2' style linting

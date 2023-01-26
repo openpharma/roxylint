@@ -17,6 +17,4 @@ Imports:
     cli,
     roxygen2
 Config/Needs/documentation: roxylint
-Config/roxylint: # list(linters = roxylint::tidy)
-Roxygen: list(markdown = TRUE, roclets = c("namespace", "rd", "roxylint::roxylint"))
 RoxygenNote: 7.2.3

@@ -35,7 +35,7 @@ into_roxy_alert <- function(tag, expr) {
 #'
 #' @param x A [roxygen2::roxy_tag()].
 #'
-#' @return A formatted string
+#' @return A formatted string.
 #'
 #' @keywords internal
 format_tag_prefix <- function(x) {
