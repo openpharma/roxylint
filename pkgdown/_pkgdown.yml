@@ -2,3 +2,14 @@ url: ~
 template:
   bootstrap: 5
 
+reference:
+  - title: Roclet
+  - contents:
+    - roxylint
+  - title: Linters
+  - contents:
+    - linters
+  - title: Utilities
+  - contents:
+    - check_linter
+    - demo_tag

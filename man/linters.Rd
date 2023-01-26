@@ -13,7 +13,7 @@
 \alias{tidy_return}
 \alias{tidy_seealso}
 \alias{tidy}
-\title{Linters}
+\title{Assorted linters}
 \format{
 An object of class \code{list} of length 4.
 }

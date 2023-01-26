@@ -17,11 +17,6 @@ Tools for inspecting \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}}s. Thi
 exploring the intermediate tag objects. For example, you can use this
 function to generate a tag and explore the named values in \verb{$val}.
 }
-\section{test}{
-
-1234
-}
-
 \examples{
 demo_tag("@param var abc")
 

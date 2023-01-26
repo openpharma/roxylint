@@ -2,41 +2,23 @@
 % Please edit documentation in R/roclet.R
 \name{roxylint}
 \alias{roxylint}
-\alias{roclet_process.roclet_roxylint}
-\alias{roclet_output.roclet_roxylint}
 \title{Roclet for 'roxygen2' style linting}
 \usage{
 roxylint()
-
-roclet_process.roclet_roxylint(x, blocks, env, base_path)
-
-roclet_output.roclet_roxylint(...)
-}
-\arguments{
-\item{x}{A \code{roclet} object.}
-
-\item{blocks}{A list of \link[roxygen2]{roxy_block} objects.}
-
-\item{env}{Package environment.}
-
-\item{base_path}{Path to root of source package.}
-
-\item{...}{Additional arguments unused.}
 }
 \value{
 A \code{roxylint} \code{\link[roxygen2:roclet]{roxygen2::roclet()}}.
-
-\code{NULL}, invisibly.
-
-\code{NULL}, invisibly.
 }
 \description{
-Roclet for 'roxygen2' style linting
+Roclets used to embed linters during documentation. To use, add the roclet in
+your \code{DESCRIPTION} file.
 }
-\section{Functions}{
-\itemize{
-\item \code{roclet_process.roclet_roxylint()}: For each tag scanned by 'roxygen2', apply any linters
-
-\item \code{roclet_output.roclet_roxylint()}: Unused
-
-}}
+\details{
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Config/Needs/documentation: roxylint
+Roxygen:
+  list(
+    markdown = TRUE,
+    roclets = c("namespace", "rd", "roxylint::roxylint")
+  )
+}\if{html}{\out{</div>}}
+}

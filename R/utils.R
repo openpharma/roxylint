@@ -11,9 +11,6 @@
 #' exploring the intermediate tag objects. For example, you can use this
 #' function to generate a tag and explore the named values in `$val`.
 #'
-#' @section test:
-#' 1234
-#'
 #' @param str A 'roxygen2' tag string.
 #'
 #' @return A [roxygen2::roxy_tag()].

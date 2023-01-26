@@ -1,4 +1,4 @@
-#' Linters
+#' Assorted linters
 #'
 #' Preconfigured linters, either as a collective list of linters or
 #' individually. "tidy" linters implement guidelines from the tidyverse style
