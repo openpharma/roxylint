@@ -18,7 +18,7 @@ into_roxy_alert <- function(tag, expr) {
       invokeRestart("muffleMessage")
     },
     warning = function(w) {
-      cli::cli_alert_info(paste(format_tag_prefix(tag), w$message))
+      cli::cli_alert_danger(paste(format_tag_prefix(tag), w$message))
       invokeRestart("muffleWarning")
     }
   )

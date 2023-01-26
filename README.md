@@ -51,7 +51,7 @@ list(
 
     # add custom messages with named lists
     details = list(
-      "details should be in 'ALL CAPS'" = "^[[:upper:] ]*$"
+      "should be in 'ALL CAPS'" = "^[[:upper:] ]*$"
     ),
 
     # use functions for fine-grained control
@@ -59,7 +59,13 @@ list(
       n_caps <- nchar(gsub("[^[:upper:]]", "", description))
       if (n_caps < nchar(description) / 2)
         warning("descriptions should be at least 50% CaPiTALiZeD")
-    }
+    },
+
+    # use multiple rules in a list
+    section = list(
+      "should not have frowny faces" = ":\\(",
+      function(x, ...) if (grepl(":\\)", x$raw)) message("nice! very happy :)")
+    )
   )
 )
 ```
@@ -68,9 +74,7 @@ With these in place, you'll start getting alerts when you're deviating from your
 style.
 
 ```
-ℹ [config.R:12] @title raw value does not match '!!!$'
-ℹ [config.R:17] @param descriptions should be at least 50% CaPiTALiZeD
-ℹ [linters.R:7] @details details should be in 'ALL CAPS'
-ℹ [roxy_tag_rd.R:1] @title raw value does not match '!!!$'
-ℹ [roxy_tag_rd.R:7] @return descriptions should be 'Sentence case' and end in a period
+ℹ [check_linter.R:1] @title raw value does not match '!!!$'
+ℹ [check_linter.R:6] @param descriptions should be at least 50% CaPiTALiZeD
+ℹ [check_linter.R:13] @return descriptions should be 'Sentence case' and end in a period
 ```

@@ -30,7 +30,7 @@ lint_sentence_case.roxy_tag <- function(x, ...) {
 lint_sentence_case.character <- function(x, ...) {
   re <- "^[[:upper:]](.|\\n)*\\.$"
   if (!grepl(re, trimws(x)))
-    warning("descriptions should be 'Sentence case' and end in a period")
+    message("descriptions should be 'Sentence case' and end in a period")
 }
 
 
@@ -44,13 +44,13 @@ tidy_title <- function(x, ...) {
 
   re <- "^[[:upper:]]"
   if ((attr(rd[[1]], "Rd_tag") == "TEXT") && !grepl(re, rd[[1]])) {
-    warning("should start capitalized and be in 'Sentence case'")
+    message("should start capitalized and be in 'Sentence case'")
     return()
   }
 
   re <- "\\.\\s*$"
   if ((attr(rd[[n]], "Rd_tag") == "TEXT") && grepl(re, rd[[n]])) {
-    warning("should not be punctuated")
+    message("should not be punctuated")
     return()
   }
 }

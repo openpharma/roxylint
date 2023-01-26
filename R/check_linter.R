@@ -80,7 +80,7 @@ check_linter.character <- function(linters, tag, message = NULL, ...) {
   into_roxy_alert(tag, {
     if (!grepl(linters, tag$raw, perl = TRUE)) {
       message <- message %||% paste0("raw value does not match '", linters, "'")
-      warning(message)
+      message(message)
     }
   })
   invisible(TRUE)
