@@ -65,6 +65,15 @@ list(
     section = list(
       "should not have frowny faces" = ":\\(",
       function(x, ...) if (grepl(":\\)", x$raw)) message("nice! very happy :)")
+    ),
+
+    # prevent other packages from registering rules with a `NULL`
+    yell = NULL,
+
+    # or prevent aditional rules by ending a list with a `NULL`
+    return = list(
+      "^Returns ",
+      NULL
     )
   )
 )
@@ -77,4 +86,25 @@ style.
 ℹ [check_linter.R:1] @title raw value does not match '!!!$'
 ℹ [check_linter.R:6] @param descriptions should be at least 50% CaPiTALiZeD
 ℹ [check_linter.R:13] @return descriptions should be 'Sentence case' and end in a period
+```
+
+## Register Linters
+
+If you're building a package that provides its own `roxygen2` tags, you can also
+register default linters.
+
+`DESCRIPTION`
+```
+Enhances:
+    roxylint
+```
+
+```r
+.onLoad <- function(libname, pkgname) {
+  if (requireNamespace("roxylint", quietly = TRUE)) {
+    roxylint::register_linters(
+      yell = "^[[:upper:] ]$"
+    )
+  }
+}
 ```

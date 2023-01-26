@@ -15,7 +15,7 @@ An object of class \code{environment} of length 0.
 \usage{
 .state
 
-config_load()
+config_load(path = getwd())
 
 config_find_from(path)
 

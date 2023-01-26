@@ -16,5 +16,5 @@ Imports:
     utils,
     cli,
     roxygen2
-Config/Needs/documentation: roxylint
+Config/Needs/documentation: roxylint, roxytypes
 RoxygenNote: 7.2.3

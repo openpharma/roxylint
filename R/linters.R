@@ -7,7 +7,7 @@
 #' Refer to the individual [roxygen2::roxy_tag()] for the respective tag for
 #' argument details.
 #'
-#' @param x The [roxygen2::roxy_tag()] that prompted the lint.
+#' @param x A [roxygen2::roxy_tag()] that is the subject of linting.
 #' @param name,description Used for [roxygen2::roxy_tag()]-specific linters.
 #' @param ... Additional arguments unused.
 #'
@@ -23,10 +23,12 @@ lint_starts_lowercase <- function(x, ...) {
   UseMethod("lint_sentence_case")
 }
 
+#' @export
 lint_starts_lowercase.roxy_tag <- function(x, ...) {
   lint_starts_lowercase(x$raw, ...)
 }
 
+#' @export
 lint_starts_lowercase.character <- function(x, ...) {
   re <- "^[^[:upper:]]"
   if (!grepl(re, trimws(x)))
@@ -42,10 +44,12 @@ lint_full_stop <- function(x, ...) {
   UseMethod("lint_sentence_case")
 }
 
+#' @export
 lint_full_stop.roxy_tag <- function(x, ...) {
   lint_full_stop(x$raw, ...)
 }
 
+#' @export
 lint_full_stop.character <- function(x, ...) {
   re <- "\\.$"
   if (!grepl(re, trimws(x)))
@@ -61,10 +65,12 @@ lint_no_full_stop <- function(x, ...) {
   UseMethod("lint_no_full_stop")
 }
 
+#' @export
 lint_no_full_stop.roxy_tag <- function(x, ...) {
   lint_no_full_stop(x$raw, ...)
 }
 
+#' @export
 lint_no_full_stop.character <- function(x, ...) {
   re <- "[^.]$"
   if (!grepl(re, trimws(x)))
@@ -80,10 +86,12 @@ lint_sentence_case <- function(x, ...) {
   UseMethod("lint_sentence_case")
 }
 
+#' @export
 lint_sentence_case.roxy_tag <- function(x, ...) {
   lint_sentence_case(x$raw, ...)
 }
 
+#' @export
 lint_sentence_case.character <- function(x, ...) {
   words <- strsplit(trimws(x), " ")[[1L]]
 
@@ -109,10 +117,12 @@ lint_title_case <- function(x, ...) {
   UseMethod("lint_title_case")
 }
 
+#' @export
 lint_title_case.roxy_tag <- function(x, ...) {
   lint_title_case(x$raw, ...)
 }
 
+#' @export
 lint_title_case.character <- function(x, ...) {
   # AP style title case rules
   words <- strsplit(x, " ")[[1L]]

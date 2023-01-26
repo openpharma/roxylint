@@ -39,7 +39,7 @@ tidy_seealso(x, ...)
 tidy
 }
 \arguments{
-\item{x}{The \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}} that prompted the lint.}
+\item{x}{A \code{\link[roxygen2:roxy_tag]{roxygen2::roxy_tag()}} that is the subject of linting.}
 
 \item{...}{Additional arguments unused.}
 

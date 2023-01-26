@@ -1,14 +1,3 @@
-#' Environment value name to use for storing config
-#'
-#' This constant is used as a variable name in the package environment while
-#' documentation is being built to avoid constantly parsing configurations
-#' during evaluation of each tag.
-#'
-#' @importFrom utils packageName
-#' @noRd
-CONFIG <- paste0(".", utils::packageName(), "_config")  # nolint
-
-
 #' Configuration
 #'
 #' Various functions for loading, caching and performing configured behaviors
@@ -19,17 +8,25 @@ CONFIG <- paste0(".", utils::packageName(), "_config")  # nolint
 #'   the context of the function.
 #'
 #' @name config
-.state <- new.env(parent = emptyenv())
+.state <- new.env(parent = baseenv())
 
 
 #' @describeIn config
 #' Load the contents of a config into an environment
 #'
 #' @keywords internal
-config_load <- function() {
-  if (exists(CONFIG, envir = .state)) return(.state[[CONFIG]])
-  config <- config_find_from(getwd())
-  .state[[CONFIG]] <- config
+config_load <- function(path = getwd()) {
+  if (exists("linters", envir = .state))
+    return(.state)
+
+  config <- config_find_from(path)
+
+  # initialize mutable catalog of active linters
+  with(.state, linters <- new.env())
+  for (tag in names(config$linters))
+    add_linters(.state, tag, config$linters[[tag]])
+
+  .state
 }
 
 

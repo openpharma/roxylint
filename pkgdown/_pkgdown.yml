@@ -9,6 +9,7 @@ reference:
   - title: Linters
   - contents:
     - linters
+    - register_linters
   - title: Utilities
   - contents:
     - check_linter
