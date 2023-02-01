@@ -1,1 +1,4 @@
-list(linters = roxylint::tidy)
+list(
+  verbose = TRUE,
+  linters = roxylint::tidy
+)

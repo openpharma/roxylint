@@ -7,20 +7,28 @@
 #'   associated tag.
 #' @param linters Optionally, provide a named list of linters directly.
 #' @param .overwrite Whether existing linters should be overwritten. Intended to
-#'   be used sparingly. For example, this could be used to implement an entire new
-#'   style guide without inheriting defaults.
+#'   be used sparingly. For example, this could be used to implement an entire
+#'   new style guide without inheriting defaults.
 #'
 #' @return `TRUE`, invisibly.
 #'
 #' @export
 register_linters <- function(..., linters = list(...), .overwrite = FALSE) {
-  config <- config_load()
+  pkg <- eval(quote(packageName()), parent.frame())
 
-  for (tag in names(linters)) {
-    if (!config_tag_accepts_linters(config, tag)) next
-    add_linters(config, tag, linters[[tag]], overwrite = .overwrite)
+  # don't cache, wait for registration to compile all config settings
+  config <- config_load(cache = FALSE)
+  if (isTRUE(config$verbose)) {
+    cli::cli_alert_info("Registering roxylints from {.pkg {pkg}}")
   }
 
+  reg_config <- list(
+    source = pkg,
+    overwrite = .overwrite,
+    linters = linters
+  )
+
+  .registered[[pkg]] <- reg_config
   invisible(TRUE)
 }
 
@@ -39,7 +47,7 @@ register_linters <- function(..., linters = list(...), .overwrite = FALSE) {
 add_linters <- function(config, tag, linters, overwrite = FALSE) {
   if (overwrite) {
     config$linters[[tag]] <- linters
-  } else {
+  } else if (config_tag_accepts_linters(config, tag)) {
     config$linters[[tag]] <- append(config$linters[[tag]], linters)
   }
 }

@@ -41,7 +41,7 @@ lint_starts_lowercase.character <- function(x, ...) {
 #'
 #' @export
 lint_full_stop <- function(x, ...) {
-  UseMethod("lint_sentence_case")
+  UseMethod("lint_full_stop")
 }
 
 #' @export

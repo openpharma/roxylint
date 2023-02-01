@@ -3,7 +3,7 @@
 \docType{data}
 \name{config}
 \alias{config}
-\alias{.state}
+\alias{.registered}
 \alias{config_load}
 \alias{config_find_from}
 \alias{config_from_desc}
@@ -13,9 +13,9 @@
 An object of class \code{environment} of length 0.
 }
 \usage{
-.state
+.registered
 
-config_load(path = getwd())
+config_load(path = getwd(), cache = TRUE)
 
 config_find_from(path)
 

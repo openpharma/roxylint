@@ -13,8 +13,8 @@ associated tag.}
 \item{linters}{Optionally, provide a named list of linters directly.}
 
 \item{.overwrite}{Whether existing linters should be overwritten. Intended to
-be used sparingly. For example, this could be used to implement an entire new
-style guide without inheriting defaults.}
+be used sparingly. For example, this could be used to implement an entire
+new style guide without inheriting defaults.}
 }
 \value{
 \code{TRUE}, invisibly.

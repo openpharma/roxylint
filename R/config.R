@@ -8,25 +8,52 @@
 #'   the context of the function.
 #'
 #' @name config
-.state <- new.env(parent = baseenv())
+.registered <- new.env(parent = baseenv())
+
 
 
 #' @describeIn config
 #' Load the contents of a config into an environment
 #'
 #' @keywords internal
-config_load <- function(path = getwd()) {
-  if (exists("linters", envir = .state))
-    return(.state)
+config_load <- function(path = getwd(), cache = TRUE) {
+  if (!is.null(roxylint_config <- roxygen2::roxy_meta_get("roxylint")))
+    return(roxylint_config)
 
-  config <- config_find_from(path)
+  roxylint <- new.env(parent = baseenv())
+  local_config <- config_find_from(path)
 
-  # initialize mutable catalog of active linters
-  with(.state, linters <- new.env())
-  for (tag in names(config$linters))
-    add_linters(.state, tag, config$linters[[tag]])
+  # config linters
+  for (tag in names(local_config$linters)) {
+    add_linters(
+      roxylint,
+      tag,
+      local_config$linters[[tag]],
+      overwrite = TRUE
+    )
+  }
 
-  .state
+  # add non-linter config
+  local_config$lintesr <- NULL
+  for (n in names(local_config)) {
+    roxylint[[n]] <- local_config[[n]]
+  }
+
+  # add any registered linters
+  for (n in names(.registered)) {
+    regconfig <- .registered[[n]]
+    for (tag in names(regconfig$linters)) {
+      overwrite <- isTRUE(regconfig$overwrite)
+      new_linters <- regconfig$linters[[tag]]
+      add_linters(roxylint, tag, new_linters, overwrite = overwrite)
+    }
+  }
+
+  # store roxylint in roxygen2 environment
+  roxy_meta_set <- getNamespace("roxygen2")[["roxy_meta_set"]]
+  if (cache) roxy_meta_set("roxylint", roxylint)
+
+  roxylint
 }
 
 
@@ -92,5 +119,5 @@ config_from_file <- function(path) {
     return(NULL)
 
   res <- new.env()
-  source(config_files[[1]], local = res)[[1]]
+  source(config_files[[1]], local = res)$value
 }
