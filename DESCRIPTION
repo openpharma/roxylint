@@ -15,9 +15,13 @@ Encoding: UTF-8
 URL:
     https://github.com/openpharma/roxylint,
     https://openpharma.github.io/roxylint
+BugReports:
+    https://github.com/openpharma/roxylint/issues
 Imports:
     utils,
     cli,
     roxygen2
-Config/Needs/documentation: roxylint, roxytypes
+Config/Needs/documentation:
+    roxylint,
+    roxytypes
 RoxygenNote: 7.2.3
