@@ -12,6 +12,9 @@ Authors@R:
 Description: Provides formatting linting to roxygen2 tags.
 License: MIT + file LICENSE
 Encoding: UTF-8
+URL:
+    https://github.com/openpharma/roxylint,
+    https://openpharma.github.io/roxylint
 Imports:
     utils,
     cli,

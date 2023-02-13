@@ -1,7 +1,7 @@
 # `roxylint`
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/dgkf/roxylint/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dgkf/roxylint/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/openpharma/roxylint/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/openpharma/roxylint/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Lint 'roxygen2'-generated documentation
