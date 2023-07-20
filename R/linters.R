@@ -24,6 +24,10 @@ lint_starts_lowercase <- function(x, ...) {
 }
 
 #' @export
+lint_starts_lowercase.default <- function(x, ...) {
+}
+
+#' @export
 lint_starts_lowercase.roxy_tag <- function(x, ...) {
   lint_starts_lowercase(x$raw, ...)
 }
@@ -42,6 +46,10 @@ lint_starts_lowercase.character <- function(x, ...) {
 #' @export
 lint_full_stop <- function(x, ...) {
   UseMethod("lint_full_stop")
+}
+
+#' @export
+lint_full_stop.default <- function(x, ...) {
 }
 
 #' @export
@@ -66,6 +74,10 @@ lint_no_full_stop <- function(x, ...) {
 }
 
 #' @export
+lint_no_full_stop.default <- function(x, ...) {
+}
+
+#' @export
 lint_no_full_stop.roxy_tag <- function(x, ...) {
   lint_no_full_stop(x$raw, ...)
 }
@@ -84,6 +96,10 @@ lint_no_full_stop.character <- function(x, ...) {
 #' @export
 lint_sentence_case <- function(x, ...) {
   UseMethod("lint_sentence_case")
+}
+
+#' @export
+lint_sentence_case.default <- function(x, ...) {
 }
 
 #' @export
@@ -115,6 +131,10 @@ lint_sentence_case.character <- function(x, ...) {
 #' @export
 lint_title_case <- function(x, ...) {
   UseMethod("lint_title_case")
+}
+
+#' @export
+lint_title_case.default <- function(x, ...) {
 }
 
 #' @export
