@@ -1,8 +1,7 @@
 list(
   markdown = TRUE,
   packages = c(
-    "roxylint",
-    "roxytypes"
+    "roxylint"
   ),
   roclets = c(
     "namespace",
