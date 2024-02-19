@@ -1,6 +1,6 @@
 Package: roxylint
-Title: Lint 'roxygen2'-generated documentation
-Version: 0.0.0.9001
+Title: Lint 'roxygen2'-Generated Documentation
+Version: 0.1.0
 Authors@R:
     c(
       person(
@@ -9,19 +9,22 @@ Authors@R:
         role = c("aut", "cre")
       )
     )
-Description: Provides formatting linting to roxygen2 tags.
+Description: Provides formatting linting to 'roxygen2' tags. Linters report
+    'roxygen2' tags that do not conform to a standard style. These linters
+    can be a helpful check for building more consistent documentation and 
+    to provide reminders about best practices or checks for typos. Default 
+    linting suites are provided for common style guides such as the one 
+    followed by the 'tidyverse', though custom linters can be registered by 
+    other packages or be custom-tailored to a specific package.
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL:
     https://github.com/openpharma/roxylint,
-    https://openpharma.github.io/roxylint
+    https://openpharma.github.io/roxylint/
 BugReports:
     https://github.com/openpharma/roxylint/issues
 Imports:
     utils,
     cli,
     roxygen2
-Config/Needs/documentation:
-    roxylint,
-    roxytypes
 RoxygenNote: 7.2.3
